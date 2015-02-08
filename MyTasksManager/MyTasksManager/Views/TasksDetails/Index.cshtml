@@ -1,0 +1,110 @@
+﻿@model IEnumerable<MyTasksManager.Models.TasksDetail>
+
+@{
+    ViewBag.Title = "Task Management System";
+}
+
+<h1>Task Management System</h1>
+
+<head>
+    <meta charset="utf-8">
+    <title>Task Management System</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <link href="~/Content/styles.css" rel="stylesheet" />
+    <script>
+
+        $(function () {
+            $("#table").tablesorter({});
+            $("#tabs").tabs();
+        });
+    </script>
+    <script src="~/Scripts/jquery.tablesorter.min.js"></script>
+
+</head>
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">Table</a></li>
+        <li><a href="#tabs-2">Chart</a></li>
+
+    </ul>
+    <div id="tabs-1">
+
+        <p>
+        @Html.ActionLink("Create New", "Create")
+
+        @using (Html.BeginForm("Index", "TasksDetails", FormMethod.Get))
+        {
+
+            <p>
+                Title: @Html.TextBox("strSearch")
+                <input type="submit" value="Search" />
+            </p>
+        }
+        </p>
+        <table id="table" class="tablesorter">
+            <thead>
+                <tr>
+                    <th>
+                        Title
+
+                    </th>
+                    <th>
+                        Description
+
+                    </th>
+                    <th>
+                        Due Date
+
+                    </th>
+                    <th>
+                        Hours Left
+
+                    </th>
+                    <th>
+                        Priority
+
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dueDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.hoursLeft)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.priority)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+
+
+    </div>
+    <div id="tabs-2">
+
+        <img src="@Url.Action("DrawChart")" alt="Drawing chart with HTML Helper" />
+    </div>
+
+</div>
