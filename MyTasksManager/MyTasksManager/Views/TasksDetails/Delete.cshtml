@@ -57,8 +57,18 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input id="deleteBtn" type="submit" value="Delete" class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }
 </div>
+<script>
+    $(function () {
+        $("#deleteBtn").button({
+            icons: {
+                primary: "ui-icon-search"
+            }
+        });
+
+    });
+</script>

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MyTasksManager.Models.TasksDetail>
+<div id ="table">
+    <table>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Due Date
+            </th>
+            <th>
+                Hours Left
+            </th>
+            <th>
+                Priority
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dueDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.hoursLeft)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.priority)
+                </td>
+                <td>
+                 </td>
+            </tr>
+        }
+    </table>
+    </div>

@@ -16,8 +16,23 @@ namespace MyTasksManager.Controllers
         private TasksDetailContext db = new TasksDetailContext();
 
         // Search: title
+        public PartialViewResult SearchTasks(string q)
+        {
+            var tasks = db.TasksDetails.Where(a => a.title.Contains(q)).ToList();
+            return PartialView(tasks);
+        }
 
         [HttpGet]
+        public JsonResult Test(string test)
+        {
+
+            var tasks = db.TasksDetails.Where(a => a.title.Contains(test)).ToList();
+            return Json(tasks, JsonRequestBehavior.AllowGet);
+            //return tasks.ToList();
+        }
+
+        [HttpGet]
+        
         public ViewResult Index(string strSearch)
         {
 
@@ -154,10 +169,10 @@ namespace MyTasksManager.Controllers
                             orderby c.title
                             select c.title;
 
-            var chart = new Chart(width: 300, height: 200, theme: ChartTheme.Vanilla)
+            var chart = new Chart(width: 600, height: 400, theme: ChartTheme.Vanilla)
             .AddTitle("Title Vs HoursLeft")
                 .AddSeries(
-                            chartType: "bar",
+                            chartType: "Line",
                             xValue: TitleList,
                             yValues: hoursLeftList)
                             .GetBytes("png");

@@ -6,7 +6,6 @@
 
 <h2>Edit</h2>
 
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -34,19 +33,22 @@
         </div>
 
         <div class="form-group">
+
             @Html.LabelFor(model => model.dueDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.dueDate, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-10 DueDate">
+                @*@Html.EditorFor(model => model.dueDate, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.TextBoxFor(model => model.dueDate, new { @class = "form-control datefield" })
                 @Html.ValidationMessageFor(model => model.dueDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.hoursLeft, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.hoursLeft, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-10 hoursLeft">
+                @Html.EditorFor(model => model.hoursLeft, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.hoursLeft, "", new { @class = "text-danger" })
             </div>
+
         </div>
 
         <div class="form-group">
@@ -61,7 +63,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input id="saveBtn" type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -70,7 +72,37 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
+<script type="text/javascript" language="javascript">
+    $('.DueDate').on('change', function () {
+        var dateSelected = new Date($('.DueDate input').val());
+        var now = new Date();
+        var selectedDate = new Date(dateSelected);
+        var diff = Math.abs(selectedDate - now);
+        var seconds = Math.floor(diff / 1000); //ignore any left over units smaller than a second
+        var minutes = Math.floor(seconds / 60);
+        seconds = seconds % 60;
+        var hours = Math.floor(minutes / 60);
+        minutes = minutes % 60;
+        $('.hoursLeft input').val(hours);
+    });
+</script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $(function () {
+        $(".datefield").datepicker();
+    });
+</script>
+
+
 }
+<script>
+    $(function () {
+        $("#saveBtn").button({
+            icons: {
+                primary: "ui-icon-search"
+            }
+        });
+
+    });
+</script>

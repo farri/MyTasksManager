@@ -11,18 +11,15 @@
     @RenderSection("scripts", required: false)
     @Styles.Render("~/Content/themes/base/css")
     @Scripts.Render("~/bundles/jqueryui")
-</head>
+    <link href="~/Content/themes/jquery-ui.css" rel="stylesheet" />
+   </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-          
-        </div>
-    </div>
+   
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year -Tasks Manager</p>
         </footer>
     </div>
 
