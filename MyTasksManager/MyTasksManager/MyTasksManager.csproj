@@ -234,17 +234,6 @@
     <Content Include="Content\themes\base\dialog.css" />
     <Content Include="Content\themes\base\draggable.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
-    <Content Include="Content\themes\base\images\bg01.jpg" />
-    <Content Include="Content\themes\base\images\bg02.jpg" />
-    <Content Include="Content\themes\base\images\bg03.jpg" />
-    <Content Include="Content\themes\base\images\bg04.jpg" />
-    <Content Include="Content\themes\base\images\bg05.jpg" />
-    <Content Include="Content\themes\base\images\bg06.jpg" />
-    <Content Include="Content\themes\base\images\bg07.jpg" />
-    <Content Include="Content\themes\base\images\img01.jpg" />
-    <Content Include="Content\themes\base\images\img02.gif" />
-    <Content Include="Content\themes\base\images\img03.gif" />
-    <Content Include="Content\themes\base\images\img04.gif" />
     <Content Include="Content\themes\base\images\spacer.gif" />
     <Content Include="Content\themes\base\menu.css" />
     <Content Include="Content\themes\base\progressbar.css" />
